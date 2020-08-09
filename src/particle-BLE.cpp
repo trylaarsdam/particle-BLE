@@ -4,15 +4,17 @@
 
 #include "Particle.h"
 #line 1 "d:/Dev/particle-BLE/src/particle-BLE.ino"
+void setup();
+void loop();
+#line 1 "d:/Dev/particle-BLE/src/particle-BLE.ino"
+SYSTEM_MODE(MANUAL);
+
 /*
  * Project particle-BLE
  * Description: Particle BLE testing
  * Author: Todd Rylaarsdam
  * Date: 8/8/2020
  */
-void setup();
-void loop();
-#line 7 "d:/Dev/particle-BLE/src/particle-BLE.ino"
 BleCharacteristic heartRateMeasurementCharacteristic;
 
 const size_t SCAN_RESULT_MAX = 30;
@@ -57,7 +59,7 @@ void setAdvertisingData() {
 
     BleAdvertisingData advData;
     advData.appendCustomData(buf, offset);
-
+    advData.appendLocalName("CPUConnect");
     // Advertise every 100 milliseconds. Unit is 0.625 millisecond intervals.
     BLE.setAdvertisingInterval(100);
 

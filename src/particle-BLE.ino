@@ -1,3 +1,5 @@
+SYSTEM_MODE(MANUAL);
+
 /*
  * Project particle-BLE
  * Description: Particle BLE testing
@@ -48,7 +50,7 @@ void setAdvertisingData() {
 
     BleAdvertisingData advData;
     advData.appendCustomData(buf, offset);
-
+    advData.appendLocalName("CPUConnect");
     // Advertise every 100 milliseconds. Unit is 0.625 millisecond intervals.
     BLE.setAdvertisingInterval(100);
 
