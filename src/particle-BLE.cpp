@@ -6,17 +6,26 @@
 #line 1 "d:/Dev/particle-BLE/src/particle-BLE.ino"
 /*
  * Project particle-BLE
- * Description:
- * Author:
- * Date:
+ * Description: Particle BLE testing
+ * Author: Todd Rylaarsdam
+ * Date: 8/8/2020
  */
-
-// setup() runs once, when the device is first turned on.
 void setup();
 void loop();
-#line 9 "d:/Dev/particle-BLE/src/particle-BLE.ino"
+#line 7 "d:/Dev/particle-BLE/src/particle-BLE.ino"
+BleCharacteristic heartRateMeasurementCharacteristic;
+
+const size_t SCAN_RESULT_MAX = 30;
+
+BleScanResult scanResults[SCAN_RESULT_MAX];
+BlePeerDevice peer;
+
+uint16_t lastRate = 0;
+void onDataReceived(const uint8_t* data, size_t len, const BlePeerDevice& peer, void* context);
+// setup() runs once, when the device is first turned on.
 void setup() {
   // Put initialization like pinMode and begin functions here.
+  BLE.on();
 
 }
 

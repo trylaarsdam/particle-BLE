@@ -1,13 +1,22 @@
 /*
  * Project particle-BLE
- * Description:
- * Author:
- * Date:
+ * Description: Particle BLE testing
+ * Author: Todd Rylaarsdam
+ * Date: 8/8/2020
  */
+BleCharacteristic heartRateMeasurementCharacteristic;
 
+const size_t SCAN_RESULT_MAX = 30;
+
+BleScanResult scanResults[SCAN_RESULT_MAX];
+BlePeerDevice peer;
+
+uint16_t lastRate = 0;
+void onDataReceived(const uint8_t* data, size_t len, const BlePeerDevice& peer, void* context);
 // setup() runs once, when the device is first turned on.
 void setup() {
   // Put initialization like pinMode and begin functions here.
+  BLE.on();
 
 }
 
