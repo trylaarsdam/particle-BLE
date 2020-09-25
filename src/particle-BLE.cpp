@@ -17,6 +17,8 @@ SYSTEM_MODE(MANUAL);
  */
 BleCharacteristic heartRateMeasurementCharacteristic;
 
+const BleUuid serviceUuid("71831bd9-530e-457a-b1d6-220fd01dbcc6");
+
 const size_t SCAN_RESULT_MAX = 30;
 
 BleScanResult scanResults[SCAN_RESULT_MAX];
@@ -43,7 +45,7 @@ void setAdvertisingData() {
     // 16-bit: Company ID (0xffff)
     // Byte: Internal packet identifier (0x55)
     // 32-bit: Color code
-
+    
     // Company ID (0xffff internal use/testing)
     buf[offset++] = 0xff;
     buf[offset++] = 0xff;
@@ -59,6 +61,7 @@ void setAdvertisingData() {
 
     BleAdvertisingData advData;
     advData.appendCustomData(buf, offset);
+    advData.appendServiceUUID(serviceUuid);
     advData.appendLocalName("CPUConnect");
     // Advertise every 100 milliseconds. Unit is 0.625 millisecond intervals.
     BLE.setAdvertisingInterval(100);
